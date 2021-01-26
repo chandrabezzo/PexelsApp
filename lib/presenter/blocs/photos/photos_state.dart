@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:pexels/domain/entities/photos_response.dart';
+import 'package:pexels/domain/entities/photo.dart';
 
 abstract class PhotosState extends Equatable {
   const PhotosState();
@@ -11,12 +11,12 @@ abstract class PhotosState extends Equatable {
 class PhotosLoadInProgress extends PhotosState {}
 
 class PhotosLoadSuccess extends PhotosState {
-  final PhotosResponse response;
+  final List<Photo> photos;
 
-  const PhotosLoadSuccess(this.response);
+  const PhotosLoadSuccess(this.photos);
 
   @override
-  List<Object> get props => [response];
+  List<Object> get props => [photos];
 }
 
 class PhotosEmpty extends PhotosState {}

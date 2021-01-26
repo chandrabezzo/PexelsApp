@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:pexels/core/error/exceptions.dart';
 import 'package:pexels/core/error/failures.dart';
 import 'package:pexels/data/datasources/photo_remote_datasource.dart';
 import 'package:pexels/domain/entities/photo.dart';

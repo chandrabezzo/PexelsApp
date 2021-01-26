@@ -35,5 +35,7 @@ class PhotoConverter {
         id: model.id
       ));
     }
+
+    return photos;
   }
 }

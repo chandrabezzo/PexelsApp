@@ -29,7 +29,7 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
     yield getPhotos.fold(
       (failure) => PhotosLoadFailed(),
-      (PhotosResponse response) => PhotosLoadSuccess(response)
+      (PhotosResponse response) => PhotosLoadSuccess(response.photos)
     );
   }
 
@@ -38,7 +38,11 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
     yield getPhotos.fold(
       (failure) => PhotosUpdateFailed(),
-      (PhotosResponse response) => PhotosLoadSuccess(response)
+      (PhotosResponse response){
+        final list = (state as PhotosLoadSuccess).photos;
+        list.addAll(response.photos);
+        return PhotosLoadSuccess(list);
+      }
     );
   }
 }
