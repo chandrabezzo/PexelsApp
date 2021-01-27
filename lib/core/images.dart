@@ -1,0 +1,1 @@
+const banner = "assets/images/banner.jpg";
