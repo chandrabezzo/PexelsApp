@@ -1,6 +1,9 @@
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pexels/core/network/network_info.dart';
 import 'package:pexels/core/styles/styles.dart';
+import 'package:pexels/data/datasources/photo_local_datasource.dart';
 import 'package:pexels/data/datasources/photo_remote_datasource.dart';
 import 'package:pexels/data/repositories/photo_repository_impl.dart';
 import 'package:pexels/domain/usecases/get_photos.dart';
@@ -19,7 +22,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => PhotosBloc(
           getPhotos: GetPhotos(repository: PhotoRepositoryImpl(
-            remoteDatasource: PhotoRemoteDatasourceImpl()
+            remoteDatasource: PhotoRemoteDatasourceImpl(),
+            localDatasource: PhotoLocalDatasourceImpl(),
+            networkInfo: NetworkInfoImpl(DataConnectionChecker())
           )))
         )
       ], 

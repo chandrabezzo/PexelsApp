@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pexels/domain/entities/photos_response.dart';
+import 'package:pexels/domain/entities/photo.dart';
 import 'package:pexels/domain/usecases/get_photos.dart';
 import 'package:pexels/presenter/blocs/photos/photos_event.dart';
 import 'package:pexels/presenter/blocs/photos/photos_state.dart';
@@ -29,7 +29,7 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
     yield getPhotos.fold(
       (failure) => PhotosLoadFailed(),
-      (PhotosResponse response) => PhotosLoadSuccess(response.photos)
+      (List<Photo> photos) => PhotosLoadSuccess(photos)
     );
   }
 
@@ -38,9 +38,9 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
     yield getPhotos.fold(
       (failure) => PhotosUpdateFailed(),
-      (PhotosResponse response){
+      (List<Photo> photos){
         final list = (state as PhotosLoadSuccess).photos;
-        list.addAll(response.photos);
+        list.addAll(photos);
         return PhotosLoadSuccess(list);
       }
     );
