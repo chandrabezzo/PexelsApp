@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pexels/core/rectangle_image.dart';
 import 'package:pexels/core/styles/text_styles.dart';
 import 'package:pexels/domain/entities/photo.dart';
+import 'package:pexels/presenter/pages/detail_page.dart';
 
 class PhotosList extends StatelessWidget {
   
@@ -31,6 +32,7 @@ class PhotosList extends StatelessWidget {
                 ? Colors.red
                 : Colors.grey
           ),
+          onTap: () => Navigator.pushNamed(context, DetailPage.routeName, arguments: photo),
         );
       },
       separatorBuilder: (context, index) => Divider(),

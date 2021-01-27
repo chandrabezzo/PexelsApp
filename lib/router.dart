@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pexels/domain/entities/photo.dart';
 import 'package:pexels/presenter/pages/detail_page.dart';
 import 'package:pexels/presenter/pages/main_page.dart';
 
@@ -12,7 +13,8 @@ class RouterGenerator {
       case MainPage.routeName:
         return _moveTo(MainPage());
       case DetailPage.routeName:
-        return _moveTo(DetailPage());
+        final args = settings.arguments as Photo;
+        return _moveTo(DetailPage(args));
       default:
         return _moveTo(MainPage());
     }
