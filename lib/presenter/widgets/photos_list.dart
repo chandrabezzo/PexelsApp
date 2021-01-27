@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:pexels/core/rectangle_image.dart';
+import 'package:pexels/core/styles/text_styles.dart';
 import 'package:pexels/domain/entities/photo.dart';
 
 class PhotosList extends StatelessWidget {
   
-  final List<Photo> _photos;
+  final List<Photo> photos;
   
-  PhotosList({
-    @required List<Photo> photos
-  }): _photos = photos;
+  PhotosList(this.photos);
   
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index){
-        return Row(children: [
-          Text("tes"),
-          Text("tes")
-        ]);
+        final photo = photos[index];
+        return ListTile(
+          leading: RectangleImage(
+            width: 70,
+            height: 100,
+            path: photo.src.medium,
+            type: RectangleImageType.Network,
+          ),
+          title: Text("Photographer: ", style: black12400),
+          subtitle: Text(photo.photographer, style: primary15600),
+          trailing: Icon(
+            Icons.favorite,
+            color: photo.liked
+                ? Colors.red
+                : Colors.grey
+          ),
+        );
       },
-      itemCount: 20,
+      separatorBuilder: (context, index) => Divider(),
+      itemCount: photos.length,
     );
   }
 }

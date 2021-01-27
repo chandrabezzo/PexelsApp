@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pexels/core/images.dart';
+import 'package:pexels/core/styles/colors.dart';
 import 'package:pexels/presenter/blocs/photos/photos_bloc.dart';
 import 'package:pexels/presenter/blocs/photos/photos_event.dart';
 import 'package:pexels/presenter/blocs/photos/photos_state.dart';
@@ -97,10 +98,14 @@ class _MainPageState extends State<MainPage> {
             builder: (context, state){
               if(state is PhotosLoadSuccess){
                 final photos = state.photos;
-                return (_isGrid) ? PhotosGrid(photos) : PhotosList();
+                return (_isGrid) ? PhotosGrid(photos) : PhotosList(photos);
               }
               else {
-                return Text("Loading");
+                return Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(colorPrimary),
+                  ),
+                );
               }
             },
           ),
