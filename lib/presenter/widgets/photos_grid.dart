@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:pexels/core/styles/colors.dart';
 import 'package:pexels/domain/entities/photo.dart';
 import 'package:pexels/presenter/widgets/tile_grid.dart';
 
@@ -32,14 +31,6 @@ class _PhotosGridState extends State<PhotosGrid> {
         return TileGrid(photo);
       },
       staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-    );
-  }
-
-  Widget _loading(){
-    return Center(
-      child: CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(colorPrimary),
-      ),
     );
   }
 }
