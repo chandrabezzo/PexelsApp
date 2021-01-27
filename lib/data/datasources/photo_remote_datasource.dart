@@ -21,7 +21,7 @@ class PhotoRemoteDatasourceImpl implements PhotoRemoteDatasource {
     final headers = await HeadersUtil.apiKey();
 
     final responseJson = await dio.get(
-      "${Endpoints.PHOTOS}/$idPhoto",
+      "${Endpoints.PHOTO}/$idPhoto",
       options: RequestOptions(
         headers: headers
       )

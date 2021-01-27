@@ -1,4 +1,3 @@
-import 'package:pexels/data/converter/src_converter.dart';
 import 'package:pexels/data/models/photo_model.dart';
 import 'package:pexels/domain/entities/photo.dart';
 
@@ -12,7 +11,7 @@ class PhotoConverter {
       photographer: model.photographer,
       photographerId: model.photographerId,
       photographerUrl: model.photographerUrl,
-      src: SrcConverter.convert(model.src),
+      src: model.src,
       url: model.url,
       width: model.width
     );
@@ -25,7 +24,7 @@ class PhotoConverter {
       photos.add(Photo(
         width: model.width,
         url: model.url,
-        src: SrcConverter.convert(model.src),
+        src: model.src,
         photographerUrl: model.photographerUrl,
         photographerId: model.photographerId,
         photographer: model.photographer,

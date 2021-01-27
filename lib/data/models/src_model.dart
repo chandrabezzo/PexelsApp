@@ -1,23 +1,26 @@
-class SrcModel {
-  SrcModel({
-    this.original,
-    this.large2X,
-    this.large,
-    this.medium,
-    this.small,
-    this.portrait,
-    this.landscape,
-    this.tiny,
-  });
+import 'package:flutter/material.dart';
+import 'package:pexels/domain/entities/src.dart';
 
-  String original;
-  String large2X;
-  String large;
-  String medium;
-  String small;
-  String portrait;
-  String landscape;
-  String tiny;
+class SrcModel extends Src {
+  SrcModel({
+    @required String original,
+    @required String large2X,
+    @required String large,
+    @required String medium,
+    @required String small,
+    @required String portrait,
+    @required String landscape,
+    @required String tiny,
+  }): super(
+    original: original,
+    tiny: tiny,
+    small: small,
+    portrait: portrait,
+    medium: medium,
+    large: large,
+    large2X: large2X,
+    landscape: landscape
+  );
 
   factory SrcModel.fromJson(Map<String, dynamic> json) => SrcModel(
     original: json["original"],

@@ -7,7 +7,6 @@ import 'package:pexels/core/network/network_info.dart';
 import 'package:pexels/data/datasources/photo_local_datasource.dart';
 import 'package:pexels/data/datasources/photo_remote_datasource.dart';
 import 'package:pexels/domain/entities/photo.dart';
-import 'package:pexels/domain/entities/photos_response.dart';
 import 'package:pexels/domain/repositories/photo_repository.dart';
 
 class PhotoRepositoryImpl implements PhotoRepository {

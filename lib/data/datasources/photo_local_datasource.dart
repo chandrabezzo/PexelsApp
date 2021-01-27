@@ -11,23 +11,22 @@ abstract class PhotoLocalDatasource {
 }
 
 class PhotoLocalDatasourceImpl implements PhotoLocalDatasource {
+  final CacheHelper cache;
+
+  PhotoLocalDatasourceImpl(this.cache);
+
   @override
   Future<List<Photo>> getPhotos() async {
-    final photos = await CacheHelper.getObject<Photo>((v){
+    final photos = await cache.getObject<Photo>((v){
       final model = PhotoModel.fromJson(v);
       return PhotoConverter.convert(model);
     }, defValue: null);
-    if(photos != null){
-      return photos;
-    }
-    else {
-      throw CacheException();
-    }
+    return photos;
   }
 
   @override
   Future<bool> savePhotos(List<Photo> photos) async {
     final allPhoto = PhotoModelConverter.converts(photos);
-    return await CacheHelper.putPhotos(allPhoto);
+    return await cache.putPhotos(allPhoto);
   }
 }

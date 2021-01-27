@@ -1,4 +1,3 @@
-import 'package:pexels/data/converter/src_converter.dart';
 import 'package:pexels/data/converter/src_model_converter.dart';
 import 'package:pexels/data/models/photo_model.dart';
 import 'package:pexels/domain/entities/photo.dart';

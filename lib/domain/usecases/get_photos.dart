@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:pexels/core/error/failures.dart';
 import 'package:pexels/core/usecase.dart';
 import 'package:pexels/domain/entities/photo.dart';
-import 'package:pexels/domain/entities/photos_response.dart';
 import 'package:pexels/domain/repositories/photo_repository.dart';
 
 class ParamsGetPhotos extends Equatable {

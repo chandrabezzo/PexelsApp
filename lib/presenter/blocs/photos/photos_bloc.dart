@@ -27,22 +27,31 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
     final getPhotos = await _getPhotos(ParamsGetPhotos(event.page));
 
-    yield getPhotos.fold(
-      (failure) => PhotosLoadFailed(),
-      (List<Photo> photos) => PhotosLoadSuccess(photos)
-    );
+    if(getPhotos != null){
+      yield getPhotos?.fold(
+              (failure) => PhotosLoadFailed(),
+              (List<Photo> photos) => (photos.isEmpty) ? PhotosEmpty() : PhotosLoadSuccess(photos)
+      );
+    }
+    else {
+      yield PhotosEmpty();
+    }
   }
 
   Stream<PhotosState> _mapPhotosUpdatedToState(PhotosUpdated event) async* {
     final getPhotos = await _getPhotos(ParamsGetPhotos(event.page));
 
-    yield getPhotos.fold(
-      (failure) => PhotosUpdateFailed(),
-      (List<Photo> photos){
-        final list = (state as PhotosLoadSuccess).photos;
-        list.addAll(photos);
-        return PhotosLoadSuccess(list);
-      }
-    );
+    if(getPhotos != null){
+      yield getPhotos?.fold(
+              (failure) => PhotosUpdateFailed(),
+              (List<Photo> photos){
+            final list = (state as PhotosLoadSuccess)?.photos;
+            if(photos != null){
+              list?.addAll(photos);
+            }
+            return PhotosLoadSuccess(list);
+          }
+      );
+    }
   }
 }
